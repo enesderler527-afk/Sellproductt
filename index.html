@@ -3,57 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShellProduct | En Kolay Pazar</title>
+    <title>Enes Deva Terminal Simulator</title>
     <style>
-        :root { --ana: #4a148c; --beyaz: #ffffff; --gri: #f4f4f4; }
-        body { font-family: sans-serif; margin: 0; background: var(--gri); text-align: center; }
-        header { background: var(--ana); color: white; padding: 20px; font-size: 24px; font-weight: bold; position: sticky; top: 0; z-index: 1000; }
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
-        .card { background: white; padding: 15px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; background: #eee; }
-        .btn { background: #25D366; color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; text-decoration: none; display: inline-block; margin-top: 10px; box-sizing: border-box; }
-        .add-link { display: inline-block; margin: 20px; padding: 10px 20px; background: var(--ana); color: white; text-decoration: none; border-radius: 20px; font-weight: bold; }
+        body {
+            background-color: #050505;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 80%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .header {
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .log-area {
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        button {
+            background-color: transparent;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            font-family: inherit;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
     </style>
 </head>
 <body>
-    <header>ShellProduct</header>
-    <a href="SENIN_GOOGLE_FORM_LINKIN" class="add-link" target="_blank">+ Ürün Satışına Başla</a>
-    <div class="container" id="display-grid">
-        <p>Ürünler yükleniyor...</p>
+
+<div class="terminal">
+    <div class="header">ENES DEVA // TERMINAL SIMULATOR v1.0</div>
+    <div class="log-area" id="logs">
+        > Sistem başlatılıyor...<br>
+        > Bağlantı güvenli.<br>
+        > İşlem başlatmak için aşağıdaki butona basın.<br>
     </div>
-    <script>
-        const tablo_url = "TABLONUN_CSV_LINKI";
-        function verileriYukle() {
-            fetch(tablo_url)
-                .then(res => res.text())
-                .then(data => {
-                    const rows = data.split('\n').slice(1).filter(row => row.trim() !== ""); 
-                    const grid = document.getElementById('display-grid');
-                    let htmlIcerik = "";
-                    rows.forEach(row => {
-                        const columns = row.includes(';') ? row.split(';') : row.split(','); 
-                        if(columns.length < 3) return;
-                        const urunAd = columns[1]?.replace(/"/g, "") || "İsimsiz Ürün";
-                        const fiyat = columns[2]?.replace(/"/g, "") || "0";
-                        const tel = columns[3]?.replace(/"/g, "").replace(/\s/g, "") || "";
-                        const resim = columns[4]?.replace(/"/g, "").trim() || 'https://via.placeholder.com/200';
-                        htmlIcerik += `
-                            <div class="card">
-                                <img src="${resim}" onerror="this.src='https://via.placeholder.com/200'">
-                                <h3>${urunAd}</h3>
-                                <div style="font-weight:bold; color:purple; margin:10px;">${fiyat} TL</div>
-                                <a href="https://wa.me/${tel}?text=Merhaba, ${urunAd} için yazıyorum." class="btn" target="_blank">WhatsApp'tan Al</a>
-                            </div>`;
-                    });
-                    grid.innerHTML = htmlIcerik || "<p>Henüz ürün eklenmemiş.</p>";
-                })
-                .catch(err => {
-                    document.getElementById('display-grid').innerHTML = "Veri linkini bekliyoruz...";
-                });
-        }
-        verileriYukle();
-        setInterval(verileriYukle, 60000);
-    </script>
+    <button onclick="runSimulation()">SİMÜLASYONU BAŞLAT</button>
+</div>
+
+<script>
+    function runSimulation() {
+        const logs = document.getElementById('logs');
+        const messages = [
+            "> Sunuculara erişim sağlanıyor...",
+            "> Ağ protokolleri taranıyor...",
+            "> Veri paketleri simüle ediliyor...",
+            "> İŞLEM TAMAMLANDI: Şaka başarıyla yüklendi! 😊"
+        ];
+        
+        let index = 0;
+        logs.innerHTML = "";
+        
+        const interval = setInterval(() => {
+            if (index < messages.length) {
+                logs.innerHTML += messages[index] + "<br>";
+                logs.scrollTop = logs.scrollHeight;
+                index++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 800);
+    }
+</script>
+
 </body>
-  </html>
-  
+</html>
