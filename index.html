@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kutlubay Otel & Hatay</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Kutlubay Otel & Resort | Hatay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --primary: #2b5a8e;
-            --primary-hover: #1e3e62;
+            --primary: #0f172a;
             --accent: #d97706;
+            --accent-hover: #b45309;
             --text-dark: #1e293b;
             --text-muted: #64748b;
             --border: #e2e8f0;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -25,21 +26,25 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* Responsive Header */
         header {
-            background: var(--card-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
@@ -48,16 +53,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.2rem 2rem;
+            padding: 1rem 1.5rem;
         }
 
         .logo {
+            font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
+
+        .logo i { color: var(--accent); }
 
         .nav-links {
             display: flex;
@@ -70,72 +81,122 @@
             color: var(--text-dark);
             font-weight: 600;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
-        /* Hero / About Section */
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
         .hero {
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80') center/cover;
+            padding: 8rem 1.5rem 6rem 1.5rem;
             text-align: center;
+            color: white;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            color: var(--primary);
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 1rem;
+            letter-spacing: 1px;
         }
 
         .hero p {
-            color: var(--text-muted);
-            max-width: 700px;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            max-width: 750px;
             margin: 0 auto 2rem auto;
-            font-size: 1.1rem;
+            color: #e2e8f0;
+            font-weight: 300;
         }
 
-        /* Sections */
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--primary);
-            margin: 4rem 0 2rem 0;
+        .hero-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
         }
 
+        .hero-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Section Layouts */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--primary);
         }
 
         /* Rooms Grid */
         .rooms-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .room-card {
             background: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--border);
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s ease;
         }
 
-        /* Image Slider Animation */
+        .room-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Slider & Badge */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 220px;
+            height: 250px;
             overflow: hidden;
-            background: #e2e8f0;
+            background: #cbd5e1;
         }
 
         .slider-img {
@@ -146,46 +207,88 @@
             top: 0;
             left: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.8s ease-in-out;
         }
 
-        .slider-img.active {
-            opacity: 1;
+        .slider-img.active { opacity: 1; }
+
+        .price-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(5px);
+            color: #ffffff;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            z-index: 10;
+        }
+
+        .price-badge span {
+            color: var(--accent);
+            font-size: 1.1rem;
         }
 
         .room-details {
-            padding: 1.5rem;
+            padding: 1.8rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .room-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            color: var(--primary);
             margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            font-weight: 700;
         }
 
         .room-desc {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
         }
+
+        /* Ful+Ful Oda Özellik Tablosu */
+        .room-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: #f1f5f9;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .room-specs div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .room-specs i { color: var(--accent); }
 
         .features-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.4rem;
             margin-bottom: 1.5rem;
             list-style: none;
         }
 
         .feature-tag {
-            background: #eff6ff;
-            color: var(--primary);
-            font-size: 0.8rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            background: #fffbe3;
+            color: #854d0e;
+            border: 1px solid #fef08a;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
             font-weight: 600;
         }
 
@@ -195,111 +298,143 @@
             color: white;
             text-decoration: none;
             text-align: center;
-            padding: 0.8rem;
-            border-radius: 10px;
-            font-weight: 600;
+            padding: 0.9rem;
+            border-radius: 12px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            transition: background 0.2s;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
         }
 
         .booking-btn:hover {
             background: #1ebc57;
+            transform: scale(1.02);
         }
 
-        /* History Section */
-        .history-card {
+        /* History & Rating */
+        .history-card, .rating-box {
             background: var(--card-bg);
             padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border);
         }
 
-        /* Rating Section */
         .rating-box {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            border: 1px solid var(--border);
         }
 
         .stars {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #cbd5e1;
             cursor: pointer;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
+            transition: color 0.2s;
         }
 
-        .stars .fa-star.active {
-            color: var(--accent);
-        }
+        .stars .fa-star.active { color: var(--accent); }
 
-        /* Modal / Admin Panel */
+        /* Admin Modal */
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
         }
 
         .modal-content {
             background: white;
             padding: 2rem;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 500px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 650px;
             max-height: 90vh;
             overflow-y: auto;
+            box-shadow: var(--shadow-lg);
         }
 
-        .form-group {
-            margin-bottom: 1rem;
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
         }
+
+        .form-group { margin-bottom: 1rem; }
+        .form-group.full-width { grid-column: 1 / -1; }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-dark);
         }
 
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.75rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 10px;
             outline: none;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent);
         }
 
         .btn-submit {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
+            padding: 1rem;
+            border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.2s;
         }
 
+        .btn-submit:hover { background: var(--accent); }
+
         footer {
-            margin-top: 5rem;
-            background: var(--card-bg);
-            border-top: 1px solid var(--border);
-            padding: 2rem;
+            background: var(--primary);
+            color: #94a3b8;
+            padding: 3rem 1.5rem;
             text-align: center;
-            color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1.5rem;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .room-specs { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -307,42 +442,52 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo">KUTLUBAY OTEL</a>
-            <ul class="nav-links">
+            <a href="#" class="logo"><i class="fa-solid fa-hotel"></i> KUTLUBAY HOTEL</a>
+            <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">Hakkımızda</a></li>
                 <li><a href="#rooms">Odalarımız</a></li>
                 <li><a href="#history">Hatay Tarihi</a></li>
-                <li><a href="#contact">İletişim</a></li>
+                <li><a href="#contact">Değerlendirme</a></li>
             </ul>
         </div>
     </header>
 
     <section id="about" class="hero">
-        <h1>Konforun ve Huzurun Adresi</h1>
-        <p>Kutlubay Otel, Medeniyetlerin başkenti Hatay'da sizlere unutulmaz bir konaklama deneyimi sunuyor. Modern mimarisi ve eşsiz misafirperverliği ile evinizdeki rahatlığı hissedin.</p>
+        <h1>Eşsiz Konfor, Unutulmaz Anılar</h1>
+        <p>Medeniyetler şehri Hatay'ın kalbinde; modern lüksün ve geleneksel misafirperverliğin buluştuğu nokta.</p>
+        <a href="#rooms" class="hero-btn">Odalarımızı Keşfedin</a>
     </section>
 
     <section id="rooms" class="container">
-        <h2 class="section-title">Odalarımız</h2>
+        <div class="section-header">
+            <span class="section-subtitle">LÜKS KONAKLAMA</span>
+            <h2 class="section-title">Oda ve Suitlerimiz</h2>
+        </div>
         <div class="rooms-grid" id="roomsContainer">
             </div>
     </section>
 
     <section id="history" class="container">
-        <h2 class="section-title">Hatay'ın Tarihi ve Önemi</h2>
+        <div class="section-header">
+            <span class="section-subtitle">KÜLTÜR & MİRAS</span>
+            <h2 class="section-title">Hatay'ın Tarihi Büyüsü</h2>
+        </div>
         <div class="history-card">
-            <h3>Medeniyetler Beşiği Hatay</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-dark);"><strong>Tarihin ve Hoşgörünün Başkenti: Hatay</strong></p>
+            <p>Hatay, binlerce yıllık geçmişiyle Doğu Akdeniz’in en köklü yerleşim yerlerinden biridir. Dünyanın ilk Hristiyan ibadethanelerinden biri kabul edilen Saint Pierre Kilisesi, tarihi Kurtuluş Caddesi ve görkemli Mozaik Müzesi ile adeta bir açık hava müzesi niteliğindedir.</p>
             <br>
-            <p>Hatay, tarih boyunca birçok büyük medeniyete ev sahipliği yapmış, Doğu Akdeniz'in en eski yerleşim merkezlerinden biridir. İlk Hristiyanların toplandığı Saint Pierre Kilisesi, Dünyanın ilk ışıklandırılan caddesi olan Kurtuluş Caddesi ve eşsiz zenginlikteki mozaik müzesiyle tarih meraklıları için büyüleyici bir atmosfere sahiptir.</p>
-            <br>
-            <p>Aynı zamanda UNESCO tescilli gastronomi şehri olan Hatay, yüzyıllardır farklı kültürlerin ve inançların bir arada barış içinde yaşadığı hoşgörü kenti olarak bilinir.</p>
+            <p>UNESCO tarafından tescillenmiş zengin mutfak kültürü (Gastronomi) ve asırlardır farklı inançların yan yana barış içinde yaşadığı kadim atmosferi ile misafirlerine unutulmaz bir seyahat vaat eder.</p>
         </div>
     </section>
 
     <section id="contact" class="container">
-        <h2 class="section-title">Bizi Değerlendirin</h2>
+        <div class="section-header">
+            <span class="section-subtitle">GÖRÜŞLERİNİZ BİZİM İÇİN DEĞERLİ</span>
+            <h2 class="section-title">Bizi Değerlendirin</h2>
+        </div>
         <div class="rating-box">
-            <p>Deneyiminizi puanlayın:</p>
+            <p style="font-weight:600;">Otel deneyiminizi puanlayın:</p>
             <div class="stars" id="starRating">
                 <i class="fa-star fa-solid" data-value="1"></i>
                 <i class="fa-star fa-solid" data-value="2"></i>
@@ -350,50 +495,85 @@
                 <i class="fa-star fa-solid" data-value="4"></i>
                 <i class="fa-star fa-solid" data-value="5"></i>
             </div>
-            <p id="ratingStatus" style="font-size:0.9rem; color:var(--text-muted);"></p>
+            <p id="ratingStatus" style="font-size:0.95rem; color:var(--accent); font-weight:600;"></p>
         </div>
     </section>
 
     <div class="modal" id="adminModal">
         <div class="modal-content">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem;">
-                <h3>Yönetici Paneli (Oda Ekle)</h3>
-                <span onclick="closeAdmin()" style="cursor:pointer; font-weight:bold;">&times;</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.5rem; border-bottom:1px solid var(--border); padding-bottom:1rem;">
+                <h3 style="color:var(--primary); font-family:'Cinzel', serif;">Yönetici Paneli (Yeni Oda Ekle)</h3>
+                <span onclick="closeAdmin()" style="cursor:pointer; font-size:1.5rem; color:var(--text-muted);">&times;</span>
             </div>
             <form id="addRoomForm">
-                <div class="form-group">
-                    <label>Oda Adı</label>
-                    <input type="text" id="roomTitle" placeholder="Örn: Deluxe Suit Oda" required>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Oda Başlığı / Tipi</label>
+                        <input type="text" id="roomTitle" placeholder="Örn: Deluxe Panoramik Suit" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gecelik Fiyat (TL)</label>
+                        <input type="number" id="roomPrice" placeholder="Örn: 2500" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kapasite (Kişi Sayısı)</label>
+                        <input type="text" id="roomCapacity" placeholder="Örn: 2 Yetişkin + 1 Çocuk" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Oda Boyutu ($m^2$)</label>
+                        <input type="text" id="roomSize" placeholder="Örn: 45 m²" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Yatak Tipi</label>
+                        <input type="text" id="roomBed" placeholder="Örn: King Size Çift Kişilik" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Manzara / Ekstra Bilgi</label>
+                        <input type="text" id="roomView" placeholder="Örn: Şehir ve Havuz Manzaralı" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Açıklama</label>
+                        <textarea id="roomDesc" rows="2" placeholder="Odanın öne çıkan lüks detaylarını yazın..." required></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Oda Özellikleri / Etiketler (Virgülle ayırın)</label>
+                        <input type="text" id="roomFeatures" placeholder="Örn: Ücretsiz Kahvaltı, Jakuzi, Balkon, Wi-Fi, Mini Bar, Klima" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Fotoğraf Bağlantıları (Her satıra 1 Görsel URL'si)</label>
+                        <textarea id="roomImages" rows="3" placeholder="https://gorsel1.jpg&#10;https://gorsel2.jpg" required></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Açıklama</label>
-                    <textarea id="roomDesc" rows="3" placeholder="Oda hakkında kısa açıklama..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Özellikler (Virgülle ayırın)</label>
-                    <input type="text" id="roomFeatures" placeholder="Örn: Klima, Wi-Fi, Jakuzi, Deniz Manzaralı" required>
-                </div>
-                <div class="form-group">
-                    <label>Fotoğraf Bağlantıları (Her satıra 1 Görsel URL'si)</label>
-                    <textarea id="roomImages" rows="3" placeholder="https://resim1.com/foto.jpg&#10;https://resim2.com/foto.jpg" required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">Odayı Kaydet ve Yayınla</button>
+                <button type="submit" class="btn-submit" style="margin-top:1rem;">Odayı Yayınla</button>
             </form>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Kutlubay Otel. Tüm Hakları Saklıdır. | İletişim: 0533 480 1087</p>
+        <p>&copy; 2026 Kutlubay Otel & Resort. Tüm Hakları Saklıdır.</p>
+        <p style="margin-top:0.5rem; font-size:0.8rem; color:#64748b;">İletişim & Rezervasyon Hattı: +90 533 480 1087</p>
     </footer>
 
     <script>
-        // Varsayılan Odalar
+        // Mobil Menü
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Varsayılan Lüks Odalar
         const defaultRooms = [
             {
                 id: 1,
-                title: "Kral Dairesi / Suit Room",
-                desc: "Geniş yaşam alanı, modern iç mimari ve harika şehir manzarası sunan lüks oda.",
-                features: ["Çift Kişilik Yatak", "Ücretsiz Wi-Fi", "Klima", "Minibar", "7/24 Oda Servisi"],
+                title: "Deluxe King Suit",
+                price: "3.500",
+                capacity: "2 Yetişkin",
+                size: "50 m²",
+                bed: "King Size Yatak",
+                view: "Şehir ve Bahçe Manzaralı",
+                desc: "Özel mimarisi, jakuzisi ve geniş balkonuyla ekstra konfor arayanlar için tasarlandı.",
+                features: ["Ücretsiz Kahvaltı", "Jakuzi", "Wi-Fi", "Klima", "7/24 Servis", "Espresso Makinesi"],
                 images: [
                     "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80",
                     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
@@ -401,13 +581,11 @@
             }
         ];
 
-        // Verileri Getir
         function getRooms() {
-            const saved = localStorage.getItem('kutlubay_rooms');
+            const saved = localStorage.getItem('kutlubay_rooms_v2');
             return saved ? JSON.parse(saved) : defaultRooms;
         }
 
-        // Odaları Ekrana Bas
         function renderRooms() {
             const container = document.getElementById('roomsContainer');
             const rooms = getRooms();
@@ -426,14 +604,24 @@
                 container.innerHTML += `
                     <div class="room-card">
                         <div class="slider-container" id="slider-${room.id}">
+                            <div class="price-badge"><span>₺${room.price}</span> / Gece</div>
                             ${imagesHTML}
                         </div>
                         <div class="room-details">
                             <h3 class="room-title">${room.title}</h3>
                             <p class="room-desc">${room.desc}</p>
+                            
+                            <div class="room-specs">
+                                <div><i class="fa-solid fa-users"></i> ${room.capacity}</div>
+                                <div><i class="fa-solid fa-vector-square"></i> ${room.size}</div>
+                                <div><i class="fa-solid fa-bed"></i> ${room.bed}</div>
+                                <div><i class="fa-solid fa-mountain-sun"></i> ${room.view}</div>
+                            </div>
+
                             <ul class="features-list">${featuresHTML}</ul>
+                            
                             <a href="${whatsappUrl}" target="_blank" class="booking-btn">
-                                <i class="fa-brands fa-whatsapp"></i> WhatsApp ile Rezervasyon Yap
+                                <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp ile Rezerve Et
                             </a>
                         </div>
                     </div>
@@ -443,7 +631,6 @@
             startSliders();
         }
 
-        // Animasyonlu Görsel Geçişi (Slider)
         function startSliders() {
             const sliders = document.querySelectorAll('.slider-container');
             sliders.forEach(slider => {
@@ -454,12 +641,12 @@
                         images[currentIndex].classList.remove('active');
                         currentIndex = (currentIndex + 1) % images.length;
                         images[currentIndex].classList.add('active');
-                    }, 3500); // 3.5 Saniyede bir değişir
+                    }, 4000);
                 }
             });
         }
 
-        // Router Control (#admin Yakalama)
+        // Router Control (#admin)
         function checkHash() {
             if (window.location.hash === '#admin') {
                 document.getElementById('adminModal').style.display = 'flex';
@@ -475,33 +662,32 @@
         window.addEventListener('hashchange', checkHash);
         window.addEventListener('load', checkHash);
 
-        // Yeni Oda Ekleme Formu
+        // Form Submit
         document.getElementById('addRoomForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const title = document.getElementById('roomTitle').value;
-            const desc = document.getElementById('roomDesc').value;
-            const features = document.getElementById('roomFeatures').value.split(',').map(item => item.trim());
-            const images = document.getElementById('roomImages').value.split('\n').map(url => url.trim()).filter(url => url !== '');
-
             const newRoom = {
                 id: Date.now(),
-                title,
-                desc,
-                features,
-                images
+                title: document.getElementById('roomTitle').value,
+                price: document.getElementById('roomPrice').value,
+                capacity: document.getElementById('roomCapacity').value,
+                size: document.getElementById('roomSize').value,
+                bed: document.getElementById('roomBed').value,
+                view: document.getElementById('roomView').value,
+                desc: document.getElementById('roomDesc').value,
+                features: document.getElementById('roomFeatures').value.split(',').map(item => item.trim()),
+                images: document.getElementById('roomImages').value.split('\n').map(url => url.trim()).filter(url => url !== '')
             };
 
             const currentRooms = getRooms();
             currentRooms.push(newRoom);
-            localStorage.setItem('kutlubay_rooms', JSON.stringify(currentRooms));
+            localStorage.setItem('kutlubay_rooms_v2', JSON.stringify(currentRooms));
 
-            // Form Temizle ve Kapat
             document.getElementById('addRoomForm').reset();
             closeAdmin();
             renderRooms();
         });
 
-        // Yıldızlama / Rating Sistemi
+        // Yıldızlama
         const stars = document.querySelectorAll('#starRating i');
         stars.forEach((star, index) => {
             star.addEventListener('click', () => {
@@ -509,11 +695,10 @@
                     if(i <= index) s.classList.add('active');
                     else s.classList.remove('active');
                 });
-                document.getElementById('ratingStatus').innerText = `Değerlendirmeniz için teşekkür ederiz! (${index + 1}/5 Yıldız)`;
+                document.getElementById('ratingStatus').innerText = `Teşekkürler! Puanınız: ${index + 1}/5 Yıldız`;
             });
         });
 
-        // Sayfa Yüklendiğinde Başlat
         renderRooms();
     </script>
 </body>
